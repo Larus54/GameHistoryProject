@@ -27,7 +27,7 @@ namespace GameHistoryProject
             txtpassword.Text = "63624294AM";
         }
 
-        private async void btnlogin_Click(object sender, EventArgs e)
+        private void btnlogin_Click(object sender, EventArgs e)
         {
             string url = "https://id.twitch.tv/oauth2/authorize?client_id=" + txtclientid.Text + "&redirect_uri=https://barrycarlyon.github.io/twitch_misc/authentication/implicit_auth/&response_type=token";
             if (txtclientid.Text.Length == 0)
@@ -86,7 +86,7 @@ namespace GameHistoryProject
 
                         if (driver.Url.StartsWith("https://barrycarlyon.github.io/twitch_misc/authentication/implicit_auth/"))
                         {
-                            string username=driver.FindElement(By.Id(""))
+                           //username;
                         }
                     }
 
