@@ -1,0 +1,10 @@
+# GameHistory - Project
+
+GameHistory è un progetto basato su "watchlist" degli anime, film, serie tv però sui videogiochi con la particolarità di darti informazioni sui capitoli successivi da giocare (oppure da evitare per il proseguimento della trama)
+
+Sarà formato da due linee temporali, uno sull'uscita dei giochi messa in ordine e uno sulla corretta "giocabilità" per la comprensione della trama.
+
+Per i nomi dei videogiochi mi baso sull'API fornito da IGDB: https://api-docs.igdb.com/ su connessioni HTTP.
+Per collegamenti HTTP utilizzo **Selenium WebDriverBrowser**: https://www.selenium.dev/documentation/webdriver/
+
+readme version: 1.0
