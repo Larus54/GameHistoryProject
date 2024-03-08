@@ -36,6 +36,8 @@
             this.txt_username = new System.Windows.Forms.TextBox();
             this.txtpassword = new System.Windows.Forms.TextBox();
             this.txtclientid = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.cmbProfile = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // btnlogin
@@ -111,11 +113,32 @@
             this.txtclientid.Size = new System.Drawing.Size(312, 22);
             this.txtclientid.TabIndex = 8;
             // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(15, 73);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(140, 25);
+            this.label5.TabIndex = 9;
+            this.label5.Text = "Google Profile:";
+            // 
+            // cmbProfile
+            // 
+            this.cmbProfile.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbProfile.FormattingEnabled = true;
+            this.cmbProfile.Location = new System.Drawing.Point(191, 75);
+            this.cmbProfile.Name = "cmbProfile";
+            this.cmbProfile.Size = new System.Drawing.Size(134, 24);
+            this.cmbProfile.TabIndex = 10;
+            // 
             // frmlogin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.cmbProfile);
+            this.Controls.Add(this.label5);
             this.Controls.Add(this.txtclientid);
             this.Controls.Add(this.txtpassword);
             this.Controls.Add(this.txt_username);
@@ -141,6 +164,8 @@
         private System.Windows.Forms.TextBox txt_username;
         private System.Windows.Forms.TextBox txtpassword;
         private System.Windows.Forms.TextBox txtclientid;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.ComboBox cmbProfile;
     }
 }
 
