@@ -38,6 +38,10 @@
             this.txtclientid = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.cmbProfile = new System.Windows.Forms.ComboBox();
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.tsminfo = new System.Windows.Forms.ToolStripMenuItem();
+            this.menu_info = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnlogin
@@ -55,7 +59,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(14, 22);
+            this.label1.Location = new System.Drawing.Point(13, 34);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(369, 32);
             this.label1.TabIndex = 2;
@@ -65,7 +69,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(15, 116);
+            this.label2.Location = new System.Drawing.Point(15, 126);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(170, 25);
             this.label2.TabIndex = 3;
@@ -75,7 +79,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(15, 154);
+            this.label3.Location = new System.Drawing.Point(15, 164);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(166, 25);
             this.label3.TabIndex = 4;
@@ -93,14 +97,14 @@
             // 
             // txt_username
             // 
-            this.txt_username.Location = new System.Drawing.Point(191, 119);
+            this.txt_username.Location = new System.Drawing.Point(191, 129);
             this.txt_username.Name = "txt_username";
             this.txt_username.Size = new System.Drawing.Size(219, 22);
             this.txt_username.TabIndex = 6;
             // 
             // txtpassword
             // 
-            this.txtpassword.Location = new System.Drawing.Point(191, 154);
+            this.txtpassword.Location = new System.Drawing.Point(191, 164);
             this.txtpassword.Name = "txtpassword";
             this.txtpassword.PasswordChar = '*';
             this.txtpassword.Size = new System.Drawing.Size(219, 22);
@@ -117,7 +121,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(15, 73);
+            this.label5.Location = new System.Drawing.Point(15, 83);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(140, 25);
             this.label5.TabIndex = 9;
@@ -127,10 +131,36 @@
             // 
             this.cmbProfile.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbProfile.FormattingEnabled = true;
-            this.cmbProfile.Location = new System.Drawing.Point(191, 75);
+            this.cmbProfile.Location = new System.Drawing.Point(191, 85);
             this.cmbProfile.Name = "cmbProfile";
             this.cmbProfile.Size = new System.Drawing.Size(134, 24);
             this.cmbProfile.TabIndex = 10;
+            // 
+            // menuStrip1
+            // 
+            this.menuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsminfo});
+            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Size = new System.Drawing.Size(800, 28);
+            this.menuStrip1.TabIndex = 11;
+            this.menuStrip1.Text = "menuStrip1";
+            // 
+            // tsminfo
+            // 
+            this.tsminfo.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.menu_info});
+            this.tsminfo.Name = "tsminfo";
+            this.tsminfo.Size = new System.Drawing.Size(30, 24);
+            this.tsminfo.Text = "?";
+            // 
+            // menu_info
+            // 
+            this.menu_info.Name = "menu_info";
+            this.menu_info.Size = new System.Drawing.Size(149, 26);
+            this.menu_info.Text = "Client ID";
+            this.menu_info.Click += new System.EventHandler(this.menu_info_Click);
             // 
             // frmlogin
             // 
@@ -147,8 +177,13 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnlogin);
+            this.Controls.Add(this.menuStrip1);
+            this.MainMenuStrip = this.menuStrip1;
             this.Name = "frmlogin";
             this.Text = "Login GameHistoryProject";
+            this.Load += new System.EventHandler(this.frmlogin_Load);
+            this.menuStrip1.ResumeLayout(false);
+            this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -166,6 +201,9 @@
         private System.Windows.Forms.TextBox txtclientid;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.ComboBox cmbProfile;
+        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem tsminfo;
+        private System.Windows.Forms.ToolStripMenuItem menu_info;
     }
 }
 

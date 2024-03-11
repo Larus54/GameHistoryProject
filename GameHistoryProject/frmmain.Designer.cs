@@ -37,6 +37,7 @@
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Name = "frmmain";
             this.Text = "GameHistoryProject";
+            this.Load += new System.EventHandler(this.frmmain_Load);
             this.ResumeLayout(false);
 
         }

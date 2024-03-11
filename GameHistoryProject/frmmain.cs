@@ -12,9 +12,16 @@ namespace GameHistoryProject
 {
     public partial class frmmain : Form
     {
-        public frmmain()
+
+        public frmmain(string tokenapi, string username)
         {
             InitializeComponent();
+
+        }
+
+        private void frmmain_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
