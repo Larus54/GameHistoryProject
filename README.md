@@ -5,6 +5,13 @@ GameHistory è un progetto basato su "watchlist" degli anime, film, serie tv per
 Sarà formato da due linee temporali, uno sull'uscita dei giochi messa in ordine e uno sulla corretta "giocabilità" per la comprensione della trama.
 
 Per i nomi dei videogiochi mi baso sull'API fornito da IGDB: https://api-docs.igdb.com/ su connessioni HTTP.
+
 Per collegamenti HTTP utilizzo **Selenium WebDriverBrowser**: https://www.selenium.dev/documentation/webdriver/
 
-readme version: 1.0
+## Come si usa?
+
+E' necessario avere **un account di twitch**, possedere **un client id** che è possibile ottenere facilmente su "https://dev.twitch.tv/" e un account chrome.
+
+Infine, si effettua il login all'interno dell'applicazione tramite le **credenziali** di **twitch** ed il gioco è fatto! Siete all'interno di GameHistory!
+
+readme version: 1.0.1
