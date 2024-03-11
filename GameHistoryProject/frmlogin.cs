@@ -39,7 +39,7 @@ namespace GameHistoryProject
                     cmbProfile.Items.Add(temp[temp.Length-1]);
             }
 
-            cmbProfile.SelectedIndex = 0;
+            //cmbProfile.SelectedIndex = 1;
         }
        private async void btnlogin_Click(object sender, EventArgs e)
        {
@@ -57,6 +57,20 @@ namespace GameHistoryProject
             {
                MessageBox.Show("Manca il client_id, leggi la guida per riuscire a trovarlo.");
                return;
+            }
+
+            //username e password obbligatori
+            if(txt_username.Text.Length == 0)
+            {
+                MessageBox.Show("Manca Username, inseriscilo");
+                return;
+
+            }
+
+            if(txtpassword.Text.Length == 0)
+            {
+                MessageBox.Show("Manca la password del profilo");
+                return;
             }
 
 
@@ -85,8 +99,8 @@ namespace GameHistoryProject
                         IWebElement Token = driver.FindElement(By.Id("access_token"));
                         if (Token != null)
                         {
-                            this.Hide();
                             frmmain frmmain = new frmmain(Token.Text, txt_username.Text);
+                            this.Hide();
                             driver.Close();
                             frmmain.ShowDialog();
                             return;
@@ -95,6 +109,27 @@ namespace GameHistoryProject
                     }
                 }
 
+                //Se si cambia account twitch o google profile
+                if(File.Exists("token.txt"))
+                {
+                    string content = File.ReadAllText("token.txt");
+
+                    string[] lines = content.Split('\n');
+                    if (txt_username.Text.ToLower() != lines[1].ToLower())
+                    {
+                        //re-login
+                        File.Delete("token.txt");
+                    }
+
+                    if (cmbProfile.SelectedText.Equals(lines[2]))
+                    {
+                        //re-login
+                        File.Delete("token.txt");
+                    }
+
+                    
+                }
+                
 
                 //Gia loggato ma non autorizzato, serve autorizzazione
                 if(File.Exists("token.txt"))
@@ -161,15 +196,18 @@ namespace GameHistoryProject
                         authorizebutton.Click();
 
 
+
                         //8. token ottenuto
+                        await Task.Delay(5000);
                         IWebElement accesstoken = driver.FindElement(By.Id("access_token"));
                         string access_token = accesstoken.Text;
+                        access_token += "\n" + txt_username.Text + '\n' + cmbProfile.Text;
                         File.WriteAllText("token.txt", access_token);
-
+                        
                         frmmain frmmain = new frmmain(access_token, txt_username.Text);
-                        frmmain.ShowDialog();
-                        this.Close();
+                        this.Hide();
                         driver.Quit();
+                        frmmain.ShowDialog();
                     }
                 }
             }
