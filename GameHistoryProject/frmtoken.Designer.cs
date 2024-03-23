@@ -39,7 +39,7 @@
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(12, 9);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(136, 25);
+            this.label1.Size = new System.Drawing.Size(107, 20);
             this.label1.TabIndex = 0;
             this.label1.Text = "Token OAuth:";
             // 
@@ -68,6 +68,7 @@
             this.Controls.Add(this.btnconfirm);
             this.Controls.Add(this.txttoken);
             this.Controls.Add(this.label1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Name = "frmtoken";
             this.Text = "Token necessario";
             this.ResumeLayout(false);

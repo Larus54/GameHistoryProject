@@ -41,6 +41,7 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.tsminfo = new System.Windows.Forms.ToolStripMenuItem();
             this.menu_info = new System.Windows.Forms.ToolStripMenuItem();
+            this.chbremember = new System.Windows.Forms.CheckBox();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -51,7 +52,7 @@
             this.btnlogin.Name = "btnlogin";
             this.btnlogin.Size = new System.Drawing.Size(768, 57);
             this.btnlogin.TabIndex = 1;
-            this.btnlogin.Text = "LOGIN";
+            this.btnlogin.Text = "ACCEDI";
             this.btnlogin.UseVisualStyleBackColor = true;
             this.btnlogin.Click += new System.EventHandler(this.btnlogin_Click);
             // 
@@ -61,7 +62,7 @@
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(13, 34);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(369, 32);
+            this.label1.Size = new System.Drawing.Size(286, 26);
             this.label1.TabIndex = 2;
             this.label1.Text = "Login GameHistory - Project";
             // 
@@ -71,7 +72,7 @@
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Location = new System.Drawing.Point(15, 126);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(170, 25);
+            this.label2.Size = new System.Drawing.Size(136, 20);
             this.label2.TabIndex = 3;
             this.label2.Text = "Username Twitch:";
             // 
@@ -81,7 +82,7 @@
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.Location = new System.Drawing.Point(15, 164);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(166, 25);
+            this.label3.Size = new System.Drawing.Size(131, 20);
             this.label3.TabIndex = 4;
             this.label3.Text = "Password Twitch:";
             // 
@@ -91,7 +92,7 @@
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.Location = new System.Drawing.Point(21, 336);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(226, 25);
+            this.label4.Size = new System.Drawing.Size(180, 20);
             this.label4.TabIndex = 5;
             this.label4.Text = "Client ID - Developer [?]:";
             // 
@@ -123,7 +124,7 @@
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.Location = new System.Drawing.Point(15, 83);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(140, 25);
+            this.label5.Size = new System.Drawing.Size(113, 20);
             this.label5.TabIndex = 9;
             this.label5.Text = "Google Profile:";
             // 
@@ -143,7 +144,7 @@
             this.tsminfo});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(800, 28);
+            this.menuStrip1.Size = new System.Drawing.Size(800, 24);
             this.menuStrip1.TabIndex = 11;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -152,21 +153,33 @@
             this.tsminfo.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.menu_info});
             this.tsminfo.Name = "tsminfo";
-            this.tsminfo.Size = new System.Drawing.Size(30, 24);
+            this.tsminfo.Size = new System.Drawing.Size(24, 20);
             this.tsminfo.Text = "?";
             // 
             // menu_info
             // 
             this.menu_info.Name = "menu_info";
-            this.menu_info.Size = new System.Drawing.Size(149, 26);
+            this.menu_info.Size = new System.Drawing.Size(119, 22);
             this.menu_info.Text = "Client ID";
             this.menu_info.Click += new System.EventHandler(this.menu_info_Click);
+            // 
+            // chbremember
+            // 
+            this.chbremember.AutoSize = true;
+            this.chbremember.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chbremember.Location = new System.Drawing.Point(654, 340);
+            this.chbremember.Name = "chbremember";
+            this.chbremember.Size = new System.Drawing.Size(99, 24);
+            this.chbremember.TabIndex = 12;
+            this.chbremember.Text = "Ricordami";
+            this.chbremember.UseVisualStyleBackColor = true;
             // 
             // frmlogin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.chbremember);
             this.Controls.Add(this.cmbProfile);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.txtclientid);
@@ -178,6 +191,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnlogin);
             this.Controls.Add(this.menuStrip1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "frmlogin";
             this.Text = "Login GameHistoryProject";
@@ -204,6 +218,7 @@
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem tsminfo;
         private System.Windows.Forms.ToolStripMenuItem menu_info;
+        private System.Windows.Forms.CheckBox chbremember;
     }
 }
 

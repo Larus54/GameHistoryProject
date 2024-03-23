@@ -13,7 +13,6 @@ using System.Net.Sockets;
 using System.IO;
 using OpenQA.Selenium.Interactions;
 
-
 namespace GameHistoryProject
 {
     public partial class frmlogin : Form
@@ -24,7 +23,6 @@ namespace GameHistoryProject
             txtclientid.Text = "fc7b68cz256hwvehp5ozz746ddwzyp";
 
             txt_username.Text = "Larus_54";
-            txtpassword.Text = "63624294AM";
 
             //Google Profile
             string profilechrome = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
@@ -39,7 +37,9 @@ namespace GameHistoryProject
                     cmbProfile.Items.Add(temp[temp.Length-1]);
             }
 
-            //cmbProfile.SelectedIndex = 1;
+
+            if(!cmbProfile.Items.Count.Equals(0))
+                cmbProfile.SelectedIndex = 1;
         }
        private async void btnlogin_Click(object sender, EventArgs e)
        {
@@ -78,7 +78,6 @@ namespace GameHistoryProject
             ChromeOptions options = new ChromeOptions();
                 
             //options.AddArgument("--headless");
-            options.AddArgument("--silent");
             options.AddArgument("user-data-dir=" + profilechrome);
             options.AddArgument("profile-directory="+cmbProfile.SelectedItem.ToString());
                
@@ -87,47 +86,85 @@ namespace GameHistoryProject
             chromeDriverService.HideCommandPromptWindow = true;
 
 
-            IWebDriver driver = new ChromeDriver(chromeDriverService, options);
+            IWebDriver driver = new ChromeDriver(chromeDriverService,options);
             driver.Navigate().GoToUrl(url);
 
             try
             {
-                //Gia loggato e autorizzato - link gia nel git, prendere solo il token
+
+                //gia autorizzato manca token
                 if(driver.Url.StartsWith(redirect))
                 {
+                    IWebElement Token = driver.FindElement(By.Id("access_token"));
+                    string access_token = Token.Text;
+                    string[] access_token_stripped = access_token.Split(' ');
+                    string access_token_finished = access_token_stripped[1];
+                    await Task.Delay(5000);
+                    if (Token != null)
                     {
-                        IWebElement Token = driver.FindElement(By.Id("access_token"));
-                        if (Token != null)
-                        {
-                            frmmain frmmain = new frmmain(Token.Text, txt_username.Text);
-                            this.Hide();
-                            driver.Close();
-                            frmmain.ShowDialog();
-                            return;
-                        }
-
+                        frmmain frmmain = new frmmain(access_token_finished, txt_username.Text, txtclientid.Text);
+                        this.Hide();
+                        driver.Close();
+                        frmmain.ShowDialog();
+                        return;
                     }
                 }
 
                 //Se si cambia account twitch o google profile
-                if(File.Exists("token.txt"))
+                if (File.Exists("token.txt"))
                 {
                     string content = File.ReadAllText("token.txt");
 
                     string[] lines = content.Split('\n');
+                    //USERNAME CAMBIATO
                     if (txt_username.Text.ToLower() != lines[1].ToLower())
                     {
                         //re-login
                         File.Delete("token.txt");
                     }
-
+                    else
+                    {
+                        if (driver.Url.StartsWith(redirect))
+                        {
+                            IWebElement Token = driver.FindElement(By.Id("access_token"));                                
+                            string access_token = Token.Text;
+                            string[] access_token_stripped = access_token.Split(' ');
+                            string access_token_finished = access_token_stripped[1];
+                          
+                            if (Token != null)
+                            {
+                                frmmain frmmain = new frmmain(access_token_finished,txt_username.Text,txtclientid.Text);
+                                this.Hide();
+                                driver.Close();
+                                frmmain.ShowDialog();
+                                return;
+                            }
+                        }
+                    }
+                    //PROFILE CHROME CAMBIATO
                     if (cmbProfile.SelectedText.Equals(lines[2]))
                     {
                         //re-login
                         File.Delete("token.txt");
                     }
-
-                    
+                    else
+                    {
+                        if (driver.Url.StartsWith(redirect))
+                        {
+                           IWebElement Token = driver.FindElement(By.Id("access_token"));
+                           string access_token = Token.Text;
+                           string[] access_token_stripped = access_token.Split(' ');
+                           string access_token_finished = access_token_stripped[1];
+                           if (Token != null)
+                           {
+                              frmmain frmmain = new frmmain(access_token_finished, txt_username.Text, txtclientid.Text);
+                              this.Hide();
+                              driver.Close();
+                              frmmain.ShowDialog();
+                              return;
+                           }
+                        }
+                    }
                 }
                 
 
@@ -147,7 +184,9 @@ namespace GameHistoryProject
                     IWebElement accesstoken = driver.FindElement(By.Id("access_token"));
                     string access_token = accesstoken.Text;
 
-                    frmmain frmmain = new frmmain(access_token, txt_username.Text);
+                    frmmain frmmain = new frmmain(access_token, txt_username.Text, txtclientid.Text);
+                    this.Hide();
+                    driver.Quit();
                     frmmain.ShowDialog();
                     //chiudere il web browser
                     driver.Quit();
@@ -191,23 +230,40 @@ namespace GameHistoryProject
                         buttontoken.Click();
                             
                         //7. autorizzazione
-                        await Task.Delay(5000);
-                        IWebElement authorizebutton = driver.FindElement(By.XPath("//button[@class='button button--large js-authorize']"));
-                        authorizebutton.Click();
+                        if(driver.Url.StartsWith(redirect))
+                        {
+                            //8. token ottenuto
+                            await Task.Delay(10000);
+                            IWebElement accesstoken = driver.FindElement(By.Id("access_token"));
+                            string access_token = accesstoken.Text;
+                            string[] access_token_stripped = access_token.Split(' ');
+                            string access_token_finished = access_token_stripped[1] + "\n" + txt_username.Text + '\n' + cmbProfile.Text;
+                            File.WriteAllText("token.txt", access_token);
 
+                            frmmain frmmain = new frmmain(access_token, txt_username.Text, txtclientid.Text);
+                            this.Hide();
+                            driver.Quit();
+                            frmmain.ShowDialog();
+                        }
+                        else
+                        {
+                            await Task.Delay(5000);
+                            IWebElement authorizebutton = driver.FindElement(By.XPath("//button[@class='button button--large js-authorize']"));
+                            authorizebutton.Click();
 
+                            //8. token ottenuto
+                            await Task.Delay(10000);
+                            IWebElement accesstoken = driver.FindElement(By.Id("access_token"));
+                            string access_token = accesstoken.Text;
+                            string[] access_token_stripped = access_token.Split(' ');
+                            string access_token_finished = access_token_stripped[1] + "\n" + txt_username.Text + '\n' + cmbProfile.Text;
+                            File.WriteAllText("token.txt", access_token);
 
-                        //8. token ottenuto
-                        await Task.Delay(5000);
-                        IWebElement accesstoken = driver.FindElement(By.Id("access_token"));
-                        string access_token = accesstoken.Text;
-                        access_token += "\n" + txt_username.Text + '\n' + cmbProfile.Text;
-                        File.WriteAllText("token.txt", access_token);
-                        
-                        frmmain frmmain = new frmmain(access_token, txt_username.Text);
-                        this.Hide();
-                        driver.Quit();
-                        frmmain.ShowDialog();
+                            frmmain frmmain = new frmmain(access_token, txt_username.Text, txtclientid.Text);
+                            this.Hide();
+                            driver.Quit();
+                            frmmain.ShowDialog();
+                        }
                     }
                 }
             }
