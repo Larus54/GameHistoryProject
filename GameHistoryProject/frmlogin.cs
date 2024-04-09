@@ -12,6 +12,7 @@ using OpenQA.Selenium;
 using System.Net.Sockets;
 using System.IO;
 using OpenQA.Selenium.Interactions;
+using GameHistoryProject.retexturing;
 
 namespace GameHistoryProject
 {
@@ -20,10 +21,6 @@ namespace GameHistoryProject
         public frmlogin()
         {
             InitializeComponent();
-            txtclientid.Text = "fc7b68cz256hwvehp5ozz746ddwzyp";
-
-            txt_username.Text = "Larus_54";
-
             //Google Profile
             string profilechrome = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
             profilechrome += "\\appdata\\Local\\Google\\Chrome\\User Data";
@@ -40,7 +37,28 @@ namespace GameHistoryProject
 
             if(!cmbProfile.Items.Count.Equals(0))
                 cmbProfile.SelectedIndex = 1;
+
+
+            //File Login
+            if(File.Exists("info.txt"))
+            {
+                string data = File.ReadAllText("info.txt");
+                string[] datas = data.Split(' ');
+                txt_username.Text = datas[0];
+                txtclientid.Text = datas[1];
+
+                chbremember.Checked = true;
+                chbremember.Enabled = true;
+            }
         }
+
+
+
+        /// <summary>
+        /// All Login process
+        /// </summary>
+        /// <param name="sender">Form login</param>
+        /// <param name="e">parameter event args</param>
        private async void btnlogin_Click(object sender, EventArgs e)
        {
             //Materiale per il login
@@ -88,6 +106,13 @@ namespace GameHistoryProject
 
             IWebDriver driver = new ChromeDriver(chromeDriverService,options);
             driver.Navigate().GoToUrl(url);
+            
+            //Remember Me
+            if(chbremember.Checked)
+            {
+                string data = txt_username.Text + " " + txtclientid.Text;
+                File.WriteAllText("info.txt", data);
+            }
 
             try
             {
@@ -267,6 +292,10 @@ namespace GameHistoryProject
                     }
                 }
             }
+            catch (InvalidOperationException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
             catch (WebDriverException ex)
             {
                 MessageBox.Show(ex.Message);
@@ -281,14 +310,18 @@ namespace GameHistoryProject
             }
        }
 
-        private void menu_info_Click(object sender, EventArgs e)
-        {
-            //TODO: Come ottenere il client id senza sapere il client secret.
-        }
-
         private void frmlogin_Load(object sender, EventArgs e)
         {
             //TODO: Cambio di lingua
+        }
+        private void btnclose_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void btnInfo_Click(object sender, EventArgs e)
+        {
+            //Info
         }
     }
 }
