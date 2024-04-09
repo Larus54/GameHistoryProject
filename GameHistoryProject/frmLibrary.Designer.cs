@@ -28,26 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.lblTabTitle = new System.Windows.Forms.Label();
             this.pnlDock = new System.Windows.Forms.Panel();
             this.pnlNavIndicator = new System.Windows.Forms.Panel();
             this.btnWIP = new System.Windows.Forms.Button();
             this.btnFavourite = new System.Windows.Forms.Button();
             this.btnBak = new System.Windows.Forms.Button();
+            this.pnlLibrary = new System.Windows.Forms.Panel();
             this.pnlDock.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // lblTabTitle
-            // 
-            this.lblTabTitle.AutoSize = true;
-            this.lblTabTitle.Font = new System.Drawing.Font("Roboto", 17.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTabTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(127)))), ((int)(((byte)(124)))), ((int)(((byte)(146)))));
-            this.lblTabTitle.Location = new System.Drawing.Point(297, 278);
-            this.lblTabTitle.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.lblTabTitle.Name = "lblTabTitle";
-            this.lblTabTitle.Size = new System.Drawing.Size(239, 35);
-            this.lblTabTitle.TabIndex = 17;
-            this.lblTabTitle.Text = "Work In Progress";
             // 
             // pnlDock
             // 
@@ -124,30 +112,36 @@
             this.btnBak.UseVisualStyleBackColor = true;
             this.btnBak.Click += new System.EventHandler(this.btnBak_Click);
             // 
+            // pnlLibrary
+            // 
+            this.pnlLibrary.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pnlLibrary.Location = new System.Drawing.Point(0, 49);
+            this.pnlLibrary.Name = "pnlLibrary";
+            this.pnlLibrary.Size = new System.Drawing.Size(869, 533);
+            this.pnlLibrary.TabIndex = 19;
+            // 
             // frmLibrary
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(18)))), ((int)(((byte)(32)))));
             this.ClientSize = new System.Drawing.Size(869, 582);
+            this.Controls.Add(this.pnlLibrary);
             this.Controls.Add(this.pnlDock);
-            this.Controls.Add(this.lblTabTitle);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "frmLibrary";
             this.Text = "frmLibrary";
             this.pnlDock.ResumeLayout(false);
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.Label lblTabTitle;
         private System.Windows.Forms.Panel pnlDock;
         private System.Windows.Forms.Button btnBak;
         private System.Windows.Forms.Button btnFavourite;
         private System.Windows.Forms.Button btnWIP;
         private System.Windows.Forms.Panel pnlNavIndicator;
+        private System.Windows.Forms.Panel pnlLibrary;
     }
 }

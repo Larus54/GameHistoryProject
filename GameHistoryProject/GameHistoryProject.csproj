@@ -60,6 +60,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Extensions\ListGame Type\games.cs" />
+    <Compile Include="frmBak.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmBak.Designer.cs">
+      <DependentUpon>frmBak.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmmain.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -95,6 +101,9 @@
     <Compile Include="Extensions\RoundedTextBox.cs">
       <SubType>Component</SubType>
     </Compile>
+    <EmbeddedResource Include="frmBak.resx">
+      <DependentUpon>frmBak.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmlogin.resx">
       <DependentUpon>frmlogin.cs</DependentUpon>
     </EmbeddedResource>

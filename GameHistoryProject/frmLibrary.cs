@@ -33,6 +33,10 @@ namespace GameHistoryProject.Panel
             pnlNavIndicator.Top = btnBak.Top;
             pnlNavIndicator.Left = btnBak.Left;
             ButtonColorReset(btnBak);
+            this.pnlLibrary.Controls.Clear();
+            frmBak frmBak = new frmBak(username) { Dock = DockStyle.Fill, TopLevel = false, TopMost = true };
+            this.pnlLibrary.Controls.Add(frmBak);
+            frmBak.Show();
 
         }
 

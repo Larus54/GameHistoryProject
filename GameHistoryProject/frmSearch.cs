@@ -23,7 +23,7 @@ namespace GameHistoryProject
         string username;
         string client_id;
         int[] idgames;
-        list_games current_account = new list_games();
+        list_games current_account = null;
         games selectedgames;
         string json_filepath;
         public frmSearch(string token, string username, string client_id)
@@ -48,7 +48,6 @@ namespace GameHistoryProject
             {
                 var loadedJsonString = File.ReadAllText(json_filepath);
                 current_account = JsonConvert.DeserializeObject<list_games>(loadedJsonString);
-                MessageBox.Show(current_account.games[0].game_name);
             }
         }
 
@@ -240,12 +239,17 @@ namespace GameHistoryProject
         private void btnAdd_Click(object sender, EventArgs e)
         {
             string directoryPath = Path.GetDirectoryName(json_filepath);
+            string photodirectory = "accounts/" + username + "/photos";
+            //accounts/suampiee/photos/593495.jpg
             string photos_filepath = "accounts/" + username + "/photos/" + idgames[lstgames.SelectedIndex].ToString() + ".jpg";
             if (!Directory.Exists(directoryPath))
             {
                 Directory.CreateDirectory(directoryPath);
             }
-            
+            if (!Directory.Exists(photodirectory))
+            {
+                Directory.CreateDirectory(photodirectory);
+            }
             piccover.Image.Save(photos_filepath);
             selectedgames.game_photo_path = photos_filepath;
             if(current_account == null)
@@ -263,6 +267,12 @@ namespace GameHistoryProject
             File.WriteAllText(json_filepath, jsonString);
 
         }
-      
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+
     }
 }

@@ -66,6 +66,7 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(869, 582);
             this.panel1.TabIndex = 0;
+            this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
             // btnFavorite
             // 
@@ -106,7 +107,7 @@
             this.lblsearchtitle.Location = new System.Drawing.Point(72, 22);
             this.lblsearchtitle.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblsearchtitle.Name = "lblsearchtitle";
-            this.lblsearchtitle.Size = new System.Drawing.Size(50, 19);
+            this.lblsearchtitle.Size = new System.Drawing.Size(56, 19);
             this.lblsearchtitle.TabIndex = 40;
             this.lblsearchtitle.Text = "Titolo";
             // 
@@ -170,7 +171,7 @@
             this.lbltitlegame.Location = new System.Drawing.Point(319, 77);
             this.lbltitlegame.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lbltitlegame.Name = "lbltitlegame";
-            this.lbltitlegame.Size = new System.Drawing.Size(21, 28);
+            this.lbltitlegame.Size = new System.Drawing.Size(19, 28);
             this.lbltitlegame.TabIndex = 35;
             this.lbltitlegame.Text = "-";
             // 
@@ -207,7 +208,7 @@
             this.lblCategory.Location = new System.Drawing.Point(205, 22);
             this.lblCategory.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblCategory.Name = "lblCategory";
-            this.lblCategory.Size = new System.Drawing.Size(79, 19);
+            this.lblCategory.Size = new System.Drawing.Size(86, 19);
             this.lblCategory.TabIndex = 33;
             this.lblCategory.Text = "Categoria";
             // 
