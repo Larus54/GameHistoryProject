@@ -14,4 +14,5 @@ E' necessario avere **un account di twitch**, possedere **un client id** che è 
 
 Infine, si effettua il login all'interno dell'applicazione tramite le **credenziali** di **twitch** ed il gioco è fatto! Siete all'interno di GameHistory!
 
-readme version: 1.0.1
+readme version: 1.0.2
+Program version: 0.12010
