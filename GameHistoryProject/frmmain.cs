@@ -25,6 +25,8 @@ namespace GameHistoryProject
         private string username;
         private string client_id;
 
+        private Point mouseDownLocation;
+         
         [DllImport("Gdi32.dll", EntryPoint = "CreateRoundRectRgn")]
 
         private static extern IntPtr CreateRoundRectRgn(
@@ -63,6 +65,9 @@ namespace GameHistoryProject
             frmLibrary frmLibrary = new frmLibrary(tokenapi, username, client_id) { Dock = DockStyle.Fill, TopLevel=false, TopMost=true};
             this.pnlMain.Controls.Add(frmLibrary);
             frmLibrary.Show();
+
+            lblstatussuccess.Text = "✔ - [Search] Online";
+            lblstatussuccess.ForeColor = Color.Green;
 
         }
         private void btnclose_Click(object sender, EventArgs e)
@@ -113,7 +118,42 @@ namespace GameHistoryProject
 
         private void btnsettings_Click(object sender, EventArgs e)
         {
+            //TODO: Menu impostazioni
+            pnlNavIndicator.Height = btnsettings.Height;
+            pnlNavIndicator.Top = btnsettings.Top;
+            pnlNavIndicator.Left = btnsettings.Left;
+            ButtonColorReset(btnsettings);
 
+            lblTabTitle.Text = "Ricerca";
+        }
+
+        private void pnlTopbar_MouseDown(object sender, MouseEventArgs e)
+        {
+            mouseDownLocation = e.Location;
+        }
+
+        private void pnlTopbar_MouseMove(object sender, MouseEventArgs e)
+        {
+            if(e.Button == MouseButtons.Left)
+            {
+                Point newLocation = new Point(
+                    this.Location.X + (e.Location.X - mouseDownLocation.X),
+                    this.Location.Y + (e.Location.Y - mouseDownLocation.Y)
+                 );
+
+                newLocation.X = Math.Max(0, newLocation.X);
+                newLocation.Y = Math.Max(0, newLocation.Y);
+
+
+                this.Location = newLocation;
+
+
+            }
+        }
+
+        private void btnMinimize_Click(object sender, EventArgs e)
+        {
+            this.WindowState = FormWindowState.Minimized;
         }
     }
 }

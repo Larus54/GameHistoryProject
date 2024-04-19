@@ -113,6 +113,8 @@ namespace GameHistoryProject
                 lbltitlegame.Text = lstgames.SelectedItem.ToString();
                 selectedgames.game_name = lstgames.SelectedItem.ToString();
                 selectedgames.game_id = idgames[lstgames.SelectedIndex];
+                selectedgames.game_category = cmbTypes.Text.ToString();
+                selectedgames.status_category = "Nessuna";
             }
 
 
@@ -165,6 +167,7 @@ namespace GameHistoryProject
                     if (jsonresponse.Count > 0)
                     {
                         txtdescription.Text = jsonresponse[0]["summary"].Value<string>();
+                        //idgenres = jsonresponse[0]["genres"].Value<string>();
                     }
                     else
                     {
@@ -179,30 +182,32 @@ namespace GameHistoryProject
 
 
                 //cover
-                    string data_cover = "fields *; where game = " + idgames[lstgames.SelectedIndex] + ";";
-                    StringContent content_cover = new StringContent(data_cover, Encoding.UTF8, "application/json");
+                string data_cover = "fields *; where game = " + idgames[lstgames.SelectedIndex] + ";";
+                StringContent content_cover = new StringContent(data_cover, Encoding.UTF8, "application/json");
 
-                    var response_cover = client.PostAsync("https://api.igdb.com/v4/covers", content_cover).Result;
+                var response_cover = client.PostAsync("https://api.igdb.com/v4/covers", content_cover).Result;
 
-                    if (response_cover.IsSuccessStatusCode)
+                if (response_cover.IsSuccessStatusCode)
+                {
+                    var jsonString = await response_cover.Content.ReadAsStringAsync();
+                    JArray jsonresponse = JsonConvert.DeserializeObject<JArray>(jsonString);
+
+                    if (jsonresponse.Count > 0)
                     {
-                        var jsonString = await response_cover.Content.ReadAsStringAsync();
-                        JArray jsonresponse = JsonConvert.DeserializeObject<JArray>(jsonString);
+                        var cover = jsonresponse[0]["image_id"].Value<string>() + ".jpg";
+                        string linkcover = "https://images.igdb.com/igdb/image/upload/t_cover_big/" + cover;
 
-                        if (jsonresponse.Count > 0)
-                        {
-                            var cover = jsonresponse[0]["image_id"].Value<string>() + ".jpg";
-                            string linkcover = "https://images.igdb.com/igdb/image/upload/t_cover_big/" + cover;
-
+                        if(cover.StartsWith(".jpg"))
+                            piccover.Load(); 
+                        else
                             piccover.Load(linkcover);
-                        }
+                    }
 
-                    }
-                    else
-                    {
-                        MessageBox.Show(response.StatusCode.ToString());
-                    }
-                
+                }
+                else
+                {
+                    MessageBox.Show(response.StatusCode.ToString());
+                }
 
                 btnMore.Enabled = true;
                 btnMore.Image = GameHistoryProject.Properties.Resources.more;
@@ -210,7 +215,9 @@ namespace GameHistoryProject
                 btnMore.Text = "Info aggiuntive";
 
                 btnAdd.Enabled = true;
+                btnAdd.Image = GameHistoryProject.Properties.Resources.more;
                 btnAdd.Text = "Aggiungi";
+                btnAdd.FlatAppearance.BorderSize = 1;
 
             }
             catch(IndexOutOfRangeException ex)
@@ -229,6 +236,10 @@ namespace GameHistoryProject
             {
                 MessageBox.Show(ex.Message);
             }
+            catch (InvalidCastException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void btnMore_Click(object sender, EventArgs e)
@@ -238,41 +249,68 @@ namespace GameHistoryProject
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            string directoryPath = Path.GetDirectoryName(json_filepath);
-            string photodirectory = "accounts/" + username + "/photos";
-            //accounts/suampiee/photos/593495.jpg
-            string photos_filepath = "accounts/" + username + "/photos/" + idgames[lstgames.SelectedIndex].ToString() + ".jpg";
-            if (!Directory.Exists(directoryPath))
+            try
             {
-                Directory.CreateDirectory(directoryPath);
-            }
-            if (!Directory.Exists(photodirectory))
-            {
-                Directory.CreateDirectory(photodirectory);
-            }
-            piccover.Image.Save(photos_filepath);
-            selectedgames.game_photo_path = photos_filepath;
-            if(current_account == null)
-            {
-                current_account = new list_games();
-                current_account.games = new List<games>
+                string directoryPath = Path.GetDirectoryName(json_filepath);
+                string photodirectory = "accounts/" + username + "/photos";
+                //accounts/suampiee/photos/593495.jpg
+                string photos_filepath = "accounts/" + username + "/photos/" + idgames[lstgames.SelectedIndex].ToString() + ".jpg";
+                if (!Directory.Exists(directoryPath))
+                {
+                    Directory.CreateDirectory(directoryPath);
+                }
+                if (!Directory.Exists(photodirectory))
+                {
+                    Directory.CreateDirectory(photodirectory);
+                }
+                piccover.Image.Save(photos_filepath);
+                selectedgames.game_photo_path = photos_filepath;
+                if (current_account == null)
+                {
+                    current_account = new list_games();
+                    current_account.games = new List<games>
                 {
                     selectedgames
                 };
+                }
+                else
+                {
+                    //controllare se il gioco è gia presente nella libreria salvata in locale
+                    for (int i = 0; i < current_account.games.Count; i++)
+                    {
+                        if (current_account.games[i].game_id.Equals(selectedgames.game_id))
+                        {
+                            //aggiornamento status
+                            lblstringupdate.Text = "il gioco " + selectedgames.game_name + " è gia presente nella tua libreria";
+                            lblstatussuccess.Text = "❌";
+                            lblstatussuccess.ForeColor = Color.Red;
+                            return;
+                        }
+                    }
+                    //in caso di no, da mettere all'interno della lista
+                    current_account.games.Add(selectedgames);
+                }
+
+                //creazione json aggiornato
+                string jsonString = JsonConvert.SerializeObject(current_account);
+                File.WriteAllText(json_filepath, jsonString);
+
+                //aggiornamento status
+                lblstringupdate.Text = "il gioco " + selectedgames.game_name + " è stato aggiunto con successo alla tua libreria";
+                lblstatussuccess.Text = "✔";
+                lblstatussuccess.ForeColor = Color.Green;
             }
-            else
-                current_account.games.Add(selectedgames);
-
-            string jsonString = JsonConvert.SerializeObject(current_account);
-            File.WriteAllText(json_filepath, jsonString);
-
+            catch (Exception ex)
+            {
+                lblstringupdate.Text = "Si è presentato un problema: " + ex.Message;
+            }
         }
-
-        private void panel1_Paint(object sender, PaintEventArgs e)
+        private void txtsearch_KeyDown(object sender, KeyEventArgs e)
         {
-
+            if(e.KeyCode == Keys.Enter)
+            {
+                btnSearchGame_Click(sender, e);
+            }
         }
-
-
     }
 }

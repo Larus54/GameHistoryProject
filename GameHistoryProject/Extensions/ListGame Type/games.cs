@@ -15,7 +15,8 @@ namespace GameHistoryProject.Extensions.ListGame_Type
         public string game_description { get; set; }
         public string game_photo_path { get; set; }
         public string game_developer { get; set; }
-        
+        public string game_category { get; set;}
+        public string status_category { get; set; }
     }
 
     internal class list_games

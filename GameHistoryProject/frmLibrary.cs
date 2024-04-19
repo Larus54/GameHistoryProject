@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
@@ -32,12 +33,16 @@ namespace GameHistoryProject.Panel
 
             pnlNavIndicator.Top = btnBak.Top;
             pnlNavIndicator.Left = btnBak.Left;
+            pnlNavIndicator.Width = btnBak.Width;
+            pnlNavIndicator.Height = 2;
             ButtonColorReset(btnBak);
             this.pnlLibrary.Controls.Clear();
             frmBak frmBak = new frmBak(username) { Dock = DockStyle.Fill, TopLevel = false, TopMost = true };
             this.pnlLibrary.Controls.Add(frmBak);
             frmBak.Show();
 
+
+            
         }
 
         private void ButtonColorReset(Button button)
@@ -56,14 +61,17 @@ namespace GameHistoryProject.Panel
         {
             pnlNavIndicator.Top = btnBak.Top;
             pnlNavIndicator.Left = btnBak.Left;
+            pnlNavIndicator.Width = btnBak.Width;
+            pnlNavIndicator.Height = 2;
             ButtonColorReset(btnBak);
         }
 
         private void btnFavourite_Click(object sender, EventArgs e)
         {
-            pnlNavIndicator.Height = btnFavourite.Height;
             pnlNavIndicator.Top = btnFavourite.Top;
             pnlNavIndicator.Left = btnFavourite.Left;
+            pnlNavIndicator.Width = btnFavourite.Width;
+            pnlNavIndicator.Height = 2;
             ButtonColorReset(btnFavourite);
         }
     }

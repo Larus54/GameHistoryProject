@@ -28,33 +28,36 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmmain));
             this.lblusername = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.lbltitlegame = new System.Windows.Forms.Label();
             this.lbldeveloper = new System.Windows.Forms.Label();
-            this.panel1 = new System.Windows.Forms.Panel();
+            this.pnlTopbar = new System.Windows.Forms.Panel();
             this.lblnumversion = new System.Windows.Forms.Label();
             this.lblVersion = new System.Windows.Forms.Label();
-            this.btnclose = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.pnlNavIndicator = new System.Windows.Forms.Panel();
-            this.btnsettings = new System.Windows.Forms.Button();
-            this.btnTabSearch = new System.Windows.Forms.Button();
-            this.btnlibrary = new System.Windows.Forms.Button();
             this.panel3 = new System.Windows.Forms.Panel();
             this.label4 = new System.Windows.Forms.Label();
             this.lbltitle = new System.Windows.Forms.Label();
             this.lbluser = new System.Windows.Forms.Label();
-            this.picicon = new System.Windows.Forms.PictureBox();
             this.panel4 = new System.Windows.Forms.Panel();
             this.lblTabTitle = new System.Windows.Forms.Label();
             this.pnlMain = new System.Windows.Forms.Panel();
-            this.panel1.SuspendLayout();
+            this.btnsettings = new System.Windows.Forms.Button();
+            this.btnTabSearch = new System.Windows.Forms.Button();
+            this.btnlibrary = new System.Windows.Forms.Button();
+            this.picicon = new System.Windows.Forms.PictureBox();
+            this.btnMinimize = new System.Windows.Forms.Button();
+            this.btnclose = new System.Windows.Forms.Button();
+            this.lblstatussuccess = new System.Windows.Forms.Label();
+            this.pnlTopbar.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.picicon)).BeginInit();
             this.panel4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picicon)).BeginInit();
             this.SuspendLayout();
             // 
             // lblusername
@@ -74,7 +77,7 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(127)))), ((int)(((byte)(124)))), ((int)(((byte)(146)))));
-            this.label1.Location = new System.Drawing.Point(857, 2);
+            this.label1.Location = new System.Drawing.Point(785, 2);
             this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(67, 20);
@@ -104,57 +107,48 @@
             this.lbldeveloper.TabIndex = 8;
             this.lbldeveloper.Text = "-";
             // 
-            // panel1
+            // pnlTopbar
             // 
-            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(23)))), ((int)(((byte)(40)))));
-            this.panel1.Controls.Add(this.lblnumversion);
-            this.panel1.Controls.Add(this.lblVersion);
-            this.panel1.Controls.Add(this.btnclose);
-            this.panel1.Controls.Add(this.label3);
-            this.panel1.Controls.Add(this.label1);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1069, 60);
-            this.panel1.TabIndex = 13;
+            this.pnlTopbar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(23)))), ((int)(((byte)(40)))));
+            this.pnlTopbar.Controls.Add(this.lblstatussuccess);
+            this.pnlTopbar.Controls.Add(this.btnMinimize);
+            this.pnlTopbar.Controls.Add(this.lblnumversion);
+            this.pnlTopbar.Controls.Add(this.lblVersion);
+            this.pnlTopbar.Controls.Add(this.btnclose);
+            this.pnlTopbar.Controls.Add(this.label3);
+            this.pnlTopbar.Controls.Add(this.label1);
+            this.pnlTopbar.Dock = System.Windows.Forms.DockStyle.Top;
+            this.pnlTopbar.Location = new System.Drawing.Point(0, 0);
+            this.pnlTopbar.Name = "pnlTopbar";
+            this.pnlTopbar.Size = new System.Drawing.Size(1069, 60);
+            this.pnlTopbar.TabIndex = 13;
+            this.pnlTopbar.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pnlTopbar_MouseDown);
+            this.pnlTopbar.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pnlTopbar_MouseMove);
             // 
             // lblnumversion
             // 
             this.lblnumversion.AutoSize = true;
             this.lblnumversion.Font = new System.Drawing.Font("Roboto", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblnumversion.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(127)))), ((int)(((byte)(124)))), ((int)(((byte)(146)))));
-            this.lblnumversion.Location = new System.Drawing.Point(777, 4);
+            this.lblnumversion.Location = new System.Drawing.Point(705, 4);
             this.lblnumversion.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblnumversion.Name = "lblnumversion";
-            this.lblnumversion.Size = new System.Drawing.Size(67, 19);
+            this.lblnumversion.Size = new System.Drawing.Size(40, 19);
             this.lblnumversion.TabIndex = 17;
-            this.lblnumversion.Text = "0.12010";
+            this.lblnumversion.Text = "0.13";
             // 
             // lblVersion
             // 
             this.lblVersion.AutoSize = true;
             this.lblVersion.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblVersion.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(127)))), ((int)(((byte)(124)))), ((int)(((byte)(146)))));
-            this.lblVersion.Location = new System.Drawing.Point(708, 2);
+            this.lblVersion.Location = new System.Drawing.Point(636, 2);
             this.lblVersion.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblVersion.Name = "lblVersion";
             this.lblVersion.Size = new System.Drawing.Size(75, 20);
             this.lblVersion.TabIndex = 15;
             this.lblVersion.Text = "Version:";
             this.lblVersion.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // btnclose
-            // 
-            this.btnclose.BackgroundImage = global::GameHistoryProject.Properties.Resources.close;
-            this.btnclose.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnclose.FlatAppearance.BorderSize = 0;
-            this.btnclose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnclose.Location = new System.Drawing.Point(1029, 14);
-            this.btnclose.Name = "btnclose";
-            this.btnclose.Size = new System.Drawing.Size(29, 34);
-            this.btnclose.TabIndex = 0;
-            this.btnclose.UseVisualStyleBackColor = true;
-            this.btnclose.Click += new System.EventHandler(this.btnclose_Click);
             // 
             // label3
             // 
@@ -189,63 +183,6 @@
             this.pnlNavIndicator.Name = "pnlNavIndicator";
             this.pnlNavIndicator.Size = new System.Drawing.Size(2, 100);
             this.pnlNavIndicator.TabIndex = 15;
-            // 
-            // btnsettings
-            // 
-            this.btnsettings.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.btnsettings.FlatAppearance.BorderSize = 0;
-            this.btnsettings.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnsettings.Font = new System.Drawing.Font("Nirmala UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnsettings.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(127)))), ((int)(((byte)(124)))), ((int)(((byte)(146)))));
-            this.btnsettings.Image = global::GameHistoryProject.Properties.Resources.settings;
-            this.btnsettings.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnsettings.Location = new System.Drawing.Point(0, 572);
-            this.btnsettings.Name = "btnsettings";
-            this.btnsettings.Size = new System.Drawing.Size(200, 52);
-            this.btnsettings.TabIndex = 17;
-            this.btnsettings.Text = "Impostazioni";
-            this.btnsettings.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnsettings.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
-            this.btnsettings.UseVisualStyleBackColor = true;
-            this.btnsettings.Click += new System.EventHandler(this.btnsettings_Click);
-            // 
-            // btnTabSearch
-            // 
-            this.btnTabSearch.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btnTabSearch.FlatAppearance.BorderSize = 0;
-            this.btnTabSearch.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnTabSearch.Font = new System.Drawing.Font("Nirmala UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnTabSearch.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(127)))), ((int)(((byte)(124)))), ((int)(((byte)(146)))));
-            this.btnTabSearch.Image = global::GameHistoryProject.Properties.Resources.search;
-            this.btnTabSearch.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnTabSearch.Location = new System.Drawing.Point(0, 212);
-            this.btnTabSearch.Name = "btnTabSearch";
-            this.btnTabSearch.Size = new System.Drawing.Size(200, 52);
-            this.btnTabSearch.TabIndex = 16;
-            this.btnTabSearch.Text = "Ricerca";
-            this.btnTabSearch.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnTabSearch.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
-            this.btnTabSearch.UseVisualStyleBackColor = true;
-            this.btnTabSearch.Click += new System.EventHandler(this.btnTabSearch_Click);
-            // 
-            // btnlibrary
-            // 
-            this.btnlibrary.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btnlibrary.FlatAppearance.BorderSize = 0;
-            this.btnlibrary.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnlibrary.Font = new System.Drawing.Font("Nirmala UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnlibrary.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(127)))), ((int)(((byte)(124)))), ((int)(((byte)(146)))));
-            this.btnlibrary.Image = global::GameHistoryProject.Properties.Resources.library;
-            this.btnlibrary.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnlibrary.Location = new System.Drawing.Point(0, 160);
-            this.btnlibrary.Name = "btnlibrary";
-            this.btnlibrary.Size = new System.Drawing.Size(200, 52);
-            this.btnlibrary.TabIndex = 15;
-            this.btnlibrary.Text = "Libreria";
-            this.btnlibrary.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnlibrary.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
-            this.btnlibrary.UseVisualStyleBackColor = true;
-            this.btnlibrary.Click += new System.EventHandler(this.btnlibrary_Click);
             // 
             // panel3
             // 
@@ -295,16 +232,6 @@
             this.lbluser.TabIndex = 15;
             this.lbluser.Text = "-";
             // 
-            // picicon
-            // 
-            this.picicon.Image = global::GameHistoryProject.Properties.Resources.account_circle1;
-            this.picicon.Location = new System.Drawing.Point(11, 42);
-            this.picicon.Name = "picicon";
-            this.picicon.Size = new System.Drawing.Size(41, 55);
-            this.picicon.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.picicon.TabIndex = 15;
-            this.picicon.TabStop = false;
-            // 
             // panel4
             // 
             this.panel4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(23)))), ((int)(((byte)(40)))));
@@ -335,6 +262,110 @@
             this.pnlMain.Size = new System.Drawing.Size(869, 582);
             this.pnlMain.TabIndex = 16;
             // 
+            // btnsettings
+            // 
+            this.btnsettings.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.btnsettings.FlatAppearance.BorderSize = 0;
+            this.btnsettings.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnsettings.Font = new System.Drawing.Font("Nirmala UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnsettings.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(127)))), ((int)(((byte)(124)))), ((int)(((byte)(146)))));
+            this.btnsettings.Image = ((System.Drawing.Image)(resources.GetObject("btnsettings.Image")));
+            this.btnsettings.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnsettings.Location = new System.Drawing.Point(0, 572);
+            this.btnsettings.Name = "btnsettings";
+            this.btnsettings.Size = new System.Drawing.Size(200, 52);
+            this.btnsettings.TabIndex = 17;
+            this.btnsettings.Text = "Impostazioni";
+            this.btnsettings.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnsettings.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
+            this.btnsettings.UseVisualStyleBackColor = true;
+            this.btnsettings.Click += new System.EventHandler(this.btnsettings_Click);
+            // 
+            // btnTabSearch
+            // 
+            this.btnTabSearch.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnTabSearch.FlatAppearance.BorderSize = 0;
+            this.btnTabSearch.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnTabSearch.Font = new System.Drawing.Font("Nirmala UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnTabSearch.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(127)))), ((int)(((byte)(124)))), ((int)(((byte)(146)))));
+            this.btnTabSearch.Image = ((System.Drawing.Image)(resources.GetObject("btnTabSearch.Image")));
+            this.btnTabSearch.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnTabSearch.Location = new System.Drawing.Point(0, 212);
+            this.btnTabSearch.Name = "btnTabSearch";
+            this.btnTabSearch.Size = new System.Drawing.Size(200, 52);
+            this.btnTabSearch.TabIndex = 16;
+            this.btnTabSearch.Text = "Ricerca";
+            this.btnTabSearch.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnTabSearch.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
+            this.btnTabSearch.UseVisualStyleBackColor = true;
+            this.btnTabSearch.Click += new System.EventHandler(this.btnTabSearch_Click);
+            // 
+            // btnlibrary
+            // 
+            this.btnlibrary.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnlibrary.FlatAppearance.BorderSize = 0;
+            this.btnlibrary.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnlibrary.Font = new System.Drawing.Font("Nirmala UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnlibrary.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(127)))), ((int)(((byte)(124)))), ((int)(((byte)(146)))));
+            this.btnlibrary.Image = ((System.Drawing.Image)(resources.GetObject("btnlibrary.Image")));
+            this.btnlibrary.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnlibrary.Location = new System.Drawing.Point(0, 160);
+            this.btnlibrary.Name = "btnlibrary";
+            this.btnlibrary.Size = new System.Drawing.Size(200, 52);
+            this.btnlibrary.TabIndex = 15;
+            this.btnlibrary.Text = "Libreria";
+            this.btnlibrary.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnlibrary.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
+            this.btnlibrary.UseVisualStyleBackColor = true;
+            this.btnlibrary.Click += new System.EventHandler(this.btnlibrary_Click);
+            // 
+            // picicon
+            // 
+            this.picicon.Image = ((System.Drawing.Image)(resources.GetObject("picicon.Image")));
+            this.picicon.Location = new System.Drawing.Point(11, 42);
+            this.picicon.Name = "picicon";
+            this.picicon.Size = new System.Drawing.Size(41, 55);
+            this.picicon.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.picicon.TabIndex = 15;
+            this.picicon.TabStop = false;
+            // 
+            // btnMinimize
+            // 
+            this.btnMinimize.BackgroundImage = global::GameHistoryProject.Properties.Resources.minimize;
+            this.btnMinimize.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnMinimize.FlatAppearance.BorderSize = 0;
+            this.btnMinimize.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnMinimize.Location = new System.Drawing.Point(999, 12);
+            this.btnMinimize.Name = "btnMinimize";
+            this.btnMinimize.Size = new System.Drawing.Size(29, 34);
+            this.btnMinimize.TabIndex = 18;
+            this.btnMinimize.UseVisualStyleBackColor = true;
+            this.btnMinimize.Click += new System.EventHandler(this.btnMinimize_Click);
+            // 
+            // btnclose
+            // 
+            this.btnclose.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnclose.BackgroundImage")));
+            this.btnclose.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnclose.FlatAppearance.BorderSize = 0;
+            this.btnclose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnclose.Location = new System.Drawing.Point(1029, 14);
+            this.btnclose.Name = "btnclose";
+            this.btnclose.Size = new System.Drawing.Size(29, 34);
+            this.btnclose.TabIndex = 0;
+            this.btnclose.UseVisualStyleBackColor = true;
+            this.btnclose.Click += new System.EventHandler(this.btnclose_Click);
+            // 
+            // lblstatussuccess
+            // 
+            this.lblstatussuccess.AutoSize = true;
+            this.lblstatussuccess.Font = new System.Drawing.Font("Roboto", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblstatussuccess.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(127)))), ((int)(((byte)(124)))), ((int)(((byte)(146)))));
+            this.lblstatussuccess.Location = new System.Drawing.Point(785, 23);
+            this.lblstatussuccess.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblstatussuccess.Name = "lblstatussuccess";
+            this.lblstatussuccess.Size = new System.Drawing.Size(0, 19);
+            this.lblstatussuccess.TabIndex = 44;
+            // 
             // frmmain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -345,7 +376,7 @@
             this.Controls.Add(this.pnlMain);
             this.Controls.Add(this.panel4);
             this.Controls.Add(this.panel2);
-            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.pnlTopbar);
             this.Controls.Add(this.lbldeveloper);
             this.Controls.Add(this.lbltitlegame);
             this.Controls.Add(this.lblusername);
@@ -354,14 +385,14 @@
             this.Name = "frmmain";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "GameHistoryProject";
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
+            this.pnlTopbar.ResumeLayout(false);
+            this.pnlTopbar.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.picicon)).EndInit();
             this.panel4.ResumeLayout(false);
             this.panel4.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picicon)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -373,7 +404,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label lbltitlegame;
         private System.Windows.Forms.Label lbldeveloper;
-        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel pnlTopbar;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Panel panel3;
@@ -391,5 +422,7 @@
         private System.Windows.Forms.Button btnclose;
         private System.Windows.Forms.Label lblVersion;
         private System.Windows.Forms.Label lblnumversion;
+        private System.Windows.Forms.Button btnMinimize;
+        private System.Windows.Forms.Label lblstatussuccess;
     }
 }

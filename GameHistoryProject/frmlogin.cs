@@ -50,6 +50,7 @@ namespace GameHistoryProject
                 chbremember.Checked = true;
                 chbremember.Enabled = true;
             }
+
         }
 
 
@@ -66,6 +67,7 @@ namespace GameHistoryProject
             string url = "https://id.twitch.tv/oauth2/authorize?client_id="+txtclientid.Text+"&redirect_uri="+redirect+"&response_type=token";
             int token = 0;
 
+            lblstringupdate.Text = "";
             //profilechrome
             string profilechrome = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
             profilechrome += "\\appdata\\Local\\Google\\Chrome\\User Data";
@@ -236,11 +238,34 @@ namespace GameHistoryProject
                 IWebElement buttonlogin = driver.FindElement(By.XPath("//button[@class ='ScCoreButton-sc-ocjdkq-0 ScCoreButtonPrimary-sc-ocjdkq-1 ccqkQH gmCwLG']"));
                 buttonlogin.Click();
 
+
+                await Task.Delay(2000);
+
+                try
+                {
+                    IWebElement wrongpassword;
+                    wrongpassword = driver.FindElement(By.XPath("//strong[@class='CoreText-sc-1txzju1-0 eghoDS']"));
+
+                    lblstringupdate.Text = wrongpassword.Text;
+                    if (!lblstringupdate.Text.Equals(""))
+                    {
+                        driver.Close();
+                        return;
+                    }
+
+                }
+                catch (WebDriverException ex)
+                {
+                    //nothing
+                }
+
                 //4. richiesta del token
                 if (token == 0)
                 {
                     frmtoken tokenpass = new frmtoken();
-                    if (tokenpass.ShowDialog(this) == DialogResult.OK)
+                    tokenpass.StartPosition = FormStartPosition.CenterScreen;
+                    tokenpass.ShowDialog();
+                    if (tokenpass.DialogResult == DialogResult.OK)
                     {
                         //5. immettere text del token app
                         string texttoken = tokenpass.token;
@@ -253,12 +278,13 @@ namespace GameHistoryProject
                         //6. cliccare conferma del token
                         IWebElement buttontoken = driver.FindElement(By.XPath("//button[@class='ScCoreButton-sc-ocjdkq-0 ScCoreButtonPrimary-sc-ocjdkq-1 bTXTVH gmCwLG']"));
                         buttontoken.Click();
-                            
+
+                        await Task.Delay(2000);
                         //7. autorizzazione
                         if(driver.Url.StartsWith(redirect))
                         {
                             //8. token ottenuto
-                            await Task.Delay(10000);
+                            await Task.Delay(5000);
                             IWebElement accesstoken = driver.FindElement(By.Id("access_token"));
                             string access_token = accesstoken.Text;
                             string[] access_token_stripped = access_token.Split(' ');
@@ -277,7 +303,7 @@ namespace GameHistoryProject
                             authorizebutton.Click();
 
                             //8. token ottenuto
-                            await Task.Delay(10000);
+                            await Task.Delay(5000);
                             IWebElement accesstoken = driver.FindElement(By.Id("access_token"));
                             string access_token = accesstoken.Text;
                             string[] access_token_stripped = access_token.Split(' ');
@@ -317,11 +343,36 @@ namespace GameHistoryProject
         private void btnclose_Click(object sender, EventArgs e)
         {
             Application.Exit();
+
         }
 
         private void btnInfo_Click(object sender, EventArgs e)
         {
             //Info
+        }
+
+        private void txt_username_KeyDown(object sender, KeyEventArgs e)
+        {
+            if(e.KeyCode == System.Windows.Forms.Keys.Enter)
+            {
+                ((Control)sender).Parent.GetNextControl((Control)sender, true).Focus();
+            }
+        }
+
+        private void txtpassword_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == System.Windows.Forms.Keys.Enter)
+            {
+                ((Control)sender).Parent.GetNextControl((Control)sender, true).Focus();
+            }
+        }
+
+        private void txtclientid_KeyDown(object sender, KeyEventArgs e)
+        {
+            if(e.KeyCode == System.Windows.Forms.Keys.Enter)
+            {
+                btnlogin_Click(sender, e);
+            }
         }
     }
 }

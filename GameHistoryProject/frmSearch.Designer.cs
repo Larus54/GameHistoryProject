@@ -28,7 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmSearch));
             this.panel1 = new System.Windows.Forms.Panel();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.lblstatussuccess = new System.Windows.Forms.Label();
+            this.lblstringupdate = new System.Windows.Forms.Label();
+            this.lblUpdate = new System.Windows.Forms.Label();
             this.btnFavorite = new System.Windows.Forms.Button();
             this.btnAdd = new System.Windows.Forms.Button();
             this.lblsearchtitle = new System.Windows.Forms.Label();
@@ -43,11 +48,13 @@
             this.btnSearchGame = new System.Windows.Forms.Button();
             this.txtsearch = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
+            this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.piccover)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.panel2);
             this.panel1.Controls.Add(this.btnFavorite);
             this.panel1.Controls.Add(this.btnAdd);
             this.panel1.Controls.Add(this.lblsearchtitle);
@@ -66,7 +73,53 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(869, 582);
             this.panel1.TabIndex = 0;
-            this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
+            // 
+            // panel2
+            // 
+            this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(23)))), ((int)(((byte)(40)))));
+            this.panel2.Controls.Add(this.lblstatussuccess);
+            this.panel2.Controls.Add(this.lblstringupdate);
+            this.panel2.Controls.Add(this.lblUpdate);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel2.Location = new System.Drawing.Point(0, 554);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(869, 28);
+            this.panel2.TabIndex = 43;
+            // 
+            // lblstatussuccess
+            // 
+            this.lblstatussuccess.AutoSize = true;
+            this.lblstatussuccess.Font = new System.Drawing.Font("Roboto", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblstatussuccess.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(127)))), ((int)(((byte)(124)))), ((int)(((byte)(146)))));
+            this.lblstatussuccess.Location = new System.Drawing.Point(842, 5);
+            this.lblstatussuccess.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblstatussuccess.Name = "lblstatussuccess";
+            this.lblstatussuccess.Size = new System.Drawing.Size(0, 19);
+            this.lblstatussuccess.TabIndex = 43;
+            // 
+            // lblstringupdate
+            // 
+            this.lblstringupdate.AutoSize = true;
+            this.lblstringupdate.Font = new System.Drawing.Font("Roboto", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblstringupdate.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(127)))), ((int)(((byte)(124)))), ((int)(((byte)(146)))));
+            this.lblstringupdate.Location = new System.Drawing.Point(181, 4);
+            this.lblstringupdate.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblstringupdate.Name = "lblstringupdate";
+            this.lblstringupdate.Size = new System.Drawing.Size(13, 19);
+            this.lblstringupdate.TabIndex = 42;
+            this.lblstringupdate.Text = "-";
+            // 
+            // lblUpdate
+            // 
+            this.lblUpdate.AutoSize = true;
+            this.lblUpdate.Font = new System.Drawing.Font("Roboto", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblUpdate.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(127)))), ((int)(((byte)(124)))), ((int)(((byte)(146)))));
+            this.lblUpdate.Location = new System.Drawing.Point(11, 4);
+            this.lblUpdate.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblUpdate.Name = "lblUpdate";
+            this.lblUpdate.Size = new System.Drawing.Size(175, 19);
+            this.lblUpdate.TabIndex = 41;
+            this.lblUpdate.Text = "Ultimo aggiornamento:";
             // 
             // btnFavorite
             // 
@@ -75,9 +128,9 @@
             this.btnFavorite.Font = new System.Drawing.Font("Nirmala UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnFavorite.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(127)))), ((int)(((byte)(124)))), ((int)(((byte)(146)))));
             this.btnFavorite.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnFavorite.Location = new System.Drawing.Point(640, 523);
+            this.btnFavorite.Location = new System.Drawing.Point(640, 504);
             this.btnFavorite.Name = "btnFavorite";
-            this.btnFavorite.Size = new System.Drawing.Size(217, 42);
+            this.btnFavorite.Size = new System.Drawing.Size(217, 44);
             this.btnFavorite.TabIndex = 42;
             this.btnFavorite.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnFavorite.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
@@ -92,7 +145,7 @@
             this.btnAdd.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnAdd.Location = new System.Drawing.Point(640, 454);
             this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(217, 63);
+            this.btnAdd.Size = new System.Drawing.Size(217, 44);
             this.btnAdd.TabIndex = 41;
             this.btnAdd.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnAdd.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
@@ -107,7 +160,7 @@
             this.lblsearchtitle.Location = new System.Drawing.Point(72, 22);
             this.lblsearchtitle.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblsearchtitle.Name = "lblsearchtitle";
-            this.lblsearchtitle.Size = new System.Drawing.Size(56, 19);
+            this.lblsearchtitle.Size = new System.Drawing.Size(50, 19);
             this.lblsearchtitle.TabIndex = 40;
             this.lblsearchtitle.Text = "Titolo";
             // 
@@ -128,9 +181,9 @@
             this.btnMore.Font = new System.Drawing.Font("Nirmala UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnMore.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(127)))), ((int)(((byte)(124)))), ((int)(((byte)(146)))));
             this.btnMore.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnMore.Location = new System.Drawing.Point(323, 523);
+            this.btnMore.Location = new System.Drawing.Point(323, 504);
             this.btnMore.Name = "btnMore";
-            this.btnMore.Size = new System.Drawing.Size(307, 42);
+            this.btnMore.Size = new System.Drawing.Size(307, 44);
             this.btnMore.TabIndex = 38;
             this.btnMore.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnMore.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
@@ -147,7 +200,7 @@
             this.txtdescription.Name = "txtdescription";
             this.txtdescription.ReadOnly = true;
             this.txtdescription.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.Vertical;
-            this.txtdescription.Size = new System.Drawing.Size(307, 375);
+            this.txtdescription.Size = new System.Drawing.Size(307, 356);
             this.txtdescription.TabIndex = 37;
             this.txtdescription.Text = "";
             // 
@@ -171,7 +224,7 @@
             this.lbltitlegame.Location = new System.Drawing.Point(319, 77);
             this.lbltitlegame.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lbltitlegame.Name = "lbltitlegame";
-            this.lbltitlegame.Size = new System.Drawing.Size(19, 28);
+            this.lbltitlegame.Size = new System.Drawing.Size(21, 28);
             this.lbltitlegame.TabIndex = 35;
             this.lbltitlegame.Text = "-";
             // 
@@ -183,15 +236,16 @@
             this.lstgames.ForeColor = System.Drawing.Color.White;
             this.lstgames.FormattingEnabled = true;
             this.lstgames.ItemHeight = 18;
-            this.lstgames.Location = new System.Drawing.Point(15, 77);
+            this.lstgames.Location = new System.Drawing.Point(15, 113);
             this.lstgames.Name = "lstgames";
-            this.lstgames.Size = new System.Drawing.Size(290, 488);
+            this.lstgames.Size = new System.Drawing.Size(290, 434);
             this.lstgames.TabIndex = 21;
             this.lstgames.SelectedIndexChanged += new System.EventHandler(this.lstgames_SelectedIndexChanged);
             // 
             // cmbTypes
             // 
             this.cmbTypes.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(23)))), ((int)(((byte)(40)))));
+            this.cmbTypes.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbTypes.Font = new System.Drawing.Font("Roboto", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbTypes.ForeColor = System.Drawing.Color.White;
             this.cmbTypes.FormattingEnabled = true;
@@ -208,7 +262,7 @@
             this.lblCategory.Location = new System.Drawing.Point(205, 22);
             this.lblCategory.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblCategory.Name = "lblCategory";
-            this.lblCategory.Size = new System.Drawing.Size(86, 19);
+            this.lblCategory.Size = new System.Drawing.Size(79, 19);
             this.lblCategory.TabIndex = 33;
             this.lblCategory.Text = "Categoria";
             // 
@@ -217,14 +271,14 @@
             this.btnSearchGame.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSearchGame.Font = new System.Drawing.Font("Nirmala UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSearchGame.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(127)))), ((int)(((byte)(124)))), ((int)(((byte)(146)))));
-            this.btnSearchGame.Image = global::GameHistoryProject.Properties.Resources.search;
+            this.btnSearchGame.Image = ((System.Drawing.Image)(resources.GetObject("btnSearchGame.Image")));
             this.btnSearchGame.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSearchGame.Location = new System.Drawing.Point(314, 37);
+            this.btnSearchGame.Location = new System.Drawing.Point(15, 74);
             this.btnSearchGame.Name = "btnSearchGame";
-            this.btnSearchGame.Size = new System.Drawing.Size(95, 33);
+            this.btnSearchGame.Size = new System.Drawing.Size(290, 33);
             this.btnSearchGame.TabIndex = 28;
             this.btnSearchGame.Text = "Search";
-            this.btnSearchGame.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnSearchGame.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnSearchGame.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
             this.btnSearchGame.UseVisualStyleBackColor = true;
             this.btnSearchGame.Click += new System.EventHandler(this.btnSearchGame_Click);
@@ -238,6 +292,7 @@
             this.txtsearch.Name = "txtsearch";
             this.txtsearch.Size = new System.Drawing.Size(162, 23);
             this.txtsearch.TabIndex = 27;
+            this.txtsearch.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtsearch_KeyDown);
             // 
             // frmSearch
             // 
@@ -252,6 +307,8 @@
             this.Load += new System.EventHandler(this.frmSearch_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.piccover)).EndInit();
             this.ResumeLayout(false);
 
@@ -273,5 +330,9 @@
         private System.Windows.Forms.Label lblsearchtitle;
         private System.Windows.Forms.Button btnAdd;
         private System.Windows.Forms.Button btnFavorite;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Label lblUpdate;
+        private System.Windows.Forms.Label lblstringupdate;
+        private System.Windows.Forms.Label lblstatussuccess;
     }
 }
