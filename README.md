@@ -1,4 +1,4 @@
-# GameHistory - Project
+# GameHistory Project - C# Edition
 
 GameHistory è un progetto basato su "watchlist" degli anime, film, serie tv però sui videogiochi con la particolarità di darti informazioni sui capitoli successivi da giocare (oppure da evitare per il proseguimento della trama)
 
